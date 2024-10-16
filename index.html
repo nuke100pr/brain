@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confusing Story Gaze Tracking</title>
+    <script src="https://app.gazerecorder.com/GazeRecorderAPI.js"></script>
+    <script src=”https://app.gazerecorder.com/GazePlayer.js”></script>
+</head>
+<body>
+
+<h1>Welcome to the Funniest, Most Confusing Story Ever</h1>
+<p>
+    Once upon a time in a land where the chickens wore sunglasses and the cows only spoke French, there was a
+    rabbit who believed it could fly. But every time the rabbit tried, the wind would whisper, "Not today." So, 
+    the rabbit decided to climb a tree instead, but ended up finding a door in the sky. Behind the door? A 
+    penguin with a briefcase full of marshmallows and a list of demands. The rabbit, utterly confused, asked 
+    why, but the penguin simply winked and disappeared into thin air.
+</p>
+<p>
+    The next morning, the rabbit received a letter from the postman—a kangaroo on roller skates—informing it 
+    that the penguin was the new mayor of Cloud City and that all citizens were required to wear mismatched 
+    socks. The rabbit, still trying to fly, decided to follow the rules but couldn't find socks that were 
+    mismatched enough. So it gave up on socks entirely and invented an umbrella that only worked when it wasn't 
+    raining. And that, my friends, is how the rabbit ended up as the CEO of the world's first flying carrot 
+    company.
+</p>
+
+<button id="startTracking" onclick="startGazeRecording()">Start Gaze Tracking</button>
+<button id="stopTracking" onclick="stopGazeRecording()">Stop Gaze Tracking</button>
+<button id="replaySession" onclick="replayGazeSession()">Replay Gaze Tracking</button>
+
+<script>
+     let sessionData;
+    // Start recording gaze data
+    function startGazeRecording() {
+        GazeRecorderAPI.Rec();  // Starts recording on the current webpage
+
+        alert("Gaze recording started. Read the story and let us know what catches your attention.");
+    }
+
+    // Stop recording gaze data
+    function stopGazeRecording() {
+        GazeRecorderAPI.StopRec();  // Stops recording
+        sessionData = GazeRecorderAPI.GetRecData();  // Get recorded data
+        console.log("Session data: ", sessionData);
+        alert("Gaze recording stopped. Thank you!");
+    }
+    // Replay the session
+    function replayGazeSession() {
+        if (sessionData) {
+            GazePlayer.PlayResultsData(sessionData);  // Replays the session data
+        } else {
+            alert("No session data available for replay.");
+        }
+    }
+</script>
+
+</body>
+</html>
